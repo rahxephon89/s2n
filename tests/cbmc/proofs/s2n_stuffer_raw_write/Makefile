@@ -13,7 +13,7 @@
 
 # Expected runtime is 30 seconds.
 
-CBMCFLAGS +=
+CBMCFLAGS += --nondet-static
 
 DEPENDENCIES += $(HELPERDIR)/source/cbmc_utils.c
 DEPENDENCIES += $(HELPERDIR)/source/make_common_datastructures.c

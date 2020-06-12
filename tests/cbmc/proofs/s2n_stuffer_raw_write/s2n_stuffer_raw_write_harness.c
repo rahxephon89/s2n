@@ -30,9 +30,9 @@ void s2n_stuffer_raw_write_harness() {
     uint32_t data_len;
 
     /* Non-deterministically set initialized (in s2n_mem) to true. */
-    if(nondet_bool()) {
+    /*if(nondet_bool()) {
         s2n_mem_init();
-    }
+    }*/
 
     /* Save previous state from stuffer. */
     struct s2n_stuffer old_stuffer = *stuffer;
