@@ -83,8 +83,8 @@ int s2n_stuffer_free(struct s2n_stuffer *stuffer)
 
 int s2n_stuffer_resize(struct s2n_stuffer *stuffer, const uint32_t size)
 {
-    S2N_ERROR_IF(stuffer->tainted == 1, S2N_ERR_RESIZE_TAINTED_STUFFER);
-    S2N_ERROR_IF(stuffer->growable == 0, S2N_ERR_RESIZE_STATIC_STUFFER);
+    ENSURE_POSIX(!stuffer->tainted, S2N_ERR_RESIZE_TAINTED_STUFFER);
+    ENSURE_POSIX(stuffer->growable, S2N_ERR_RESIZE_STATIC_STUFFER);
 
     if (size == stuffer->blob.size) {
         return S2N_SUCCESS;
@@ -146,6 +146,7 @@ int s2n_stuffer_wipe_n(struct s2n_stuffer *stuffer, const uint32_t size)
     stuffer->write_cursor -= size;
     memset_check(stuffer->blob.data + stuffer->write_cursor, S2N_WIPE_PATTERN, size);
     stuffer->read_cursor = MIN(stuffer->read_cursor, stuffer->write_cursor);
+    stuffer->high_water_mark = MIN(stuffer->high_water_mark, stuffer->write_cursor);
 
     return S2N_SUCCESS;
 }
