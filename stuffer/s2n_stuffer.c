@@ -152,6 +152,7 @@ int s2n_stuffer_wipe_n(struct s2n_stuffer *stuffer, const uint32_t size)
 
 int s2n_stuffer_release_if_empty(struct s2n_stuffer *stuffer)
 {
+    PRECONDITION_POSIX(s2n_stuffer_is_valid(stuffer));
     if (stuffer->blob.data == NULL) {
         return S2N_SUCCESS;
     }
@@ -161,7 +162,7 @@ int s2n_stuffer_release_if_empty(struct s2n_stuffer *stuffer)
 
     GUARD(s2n_stuffer_wipe(stuffer));
     GUARD(s2n_stuffer_resize(stuffer, 0));
-
+    POSTCONDITION_POSIX(s2n_stuffer_is_valid(stuffer));
     return S2N_SUCCESS;
 }
 
