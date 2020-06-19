@@ -49,3 +49,8 @@ struct s2n_stuffer* cbmc_allocate_s2n_stuffer();
  * with as much nondet as possible, len < max_size.
  */
 const char *ensure_c_str_is_allocated(size_t max_size);
+
+/*
+ * Properly allocates s2n_stuffer_reservation for CBMC proofs.
+ */
+struct s2n_stuffer_reservation* cbmc_allocate_s2n_stuffer_reservation();
