@@ -37,8 +37,7 @@ bool s2n_stuffer_is_valid(const struct s2n_stuffer* stuffer)
 
 extern bool s2n_stuffer_reservation_is_valid(const struct s2n_stuffer_reservation* reservation)
 {
-    return s2n_stuffer_is_valid(reservation->stuffer)/* &&
-           (reservation->write_cursor == reservation->stuffer->write_cursor)*/;
+    return S2N_OBJECT_PTR_IS_READABLE(reservation) && s2n_stuffer_is_valid(reservation->stuffer);
 }
 
 int s2n_stuffer_init(struct s2n_stuffer *stuffer, struct s2n_blob *in)
