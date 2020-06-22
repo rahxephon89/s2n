@@ -19,6 +19,8 @@
 #include "api/s2n.h"
 #include "stuffer/s2n_stuffer.h"
 #include "utils/s2n_array.h"
+#include "utils/s2n_blob.h"
+#include "utils/s2n_set.h"
 
 /*
  * Checks whether s2n_blob is bounded by max_size.
@@ -55,3 +57,8 @@ const char *ensure_c_str_is_allocated(size_t max_size);
  * Properly allocates s2n_array for CBMC proofs.
  */
 struct s2n_array* cbmc_allocate_s2n_array();
+
+/*
+ * Properly allocates s2n_set for CBMC proofs.
+ */
+struct s2n_set* cbmc_allocate_s2n_set();
