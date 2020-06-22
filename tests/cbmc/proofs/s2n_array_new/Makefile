@@ -13,7 +13,7 @@
 
 # Expected runtime is less than 20 seconds.
 
-ABSTRACTIONS += $(HELPERDIR)/stubs/memset.c
+#ABSTRACTIONS += $(HELPERDIR)/stubs/memset.c
 
 CHECKFLAGS +=
 
