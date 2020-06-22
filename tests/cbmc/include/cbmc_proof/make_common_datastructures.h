@@ -18,6 +18,7 @@
 #include <cbmc_proof/proof_allocators.h>
 #include "api/s2n.h"
 #include "stuffer/s2n_stuffer.h"
+#include "utils/s2n_array.h"
 
 /*
  * Checks whether s2n_blob is bounded by max_size.
@@ -49,3 +50,8 @@ struct s2n_stuffer* cbmc_allocate_s2n_stuffer();
  * with as much nondet as possible, len < max_size.
  */
 const char *ensure_c_str_is_allocated(size_t max_size);
+
+/*
+ * Properly allocates s2n_array for CBMC proofs.
+ */
+struct s2n_array* cbmc_allocate_s2n_array();

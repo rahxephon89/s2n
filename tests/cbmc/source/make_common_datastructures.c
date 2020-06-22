@@ -58,3 +58,15 @@ const char *ensure_c_str_is_allocated(size_t max_size) {
     __CPROVER_assume(str[cap - 1] == 0);
     return str;
 }
+
+struct s2n_array* cbmc_allocate_s2n_array() {
+    struct s2n_array *array = can_fail_malloc(sizeof(*array));
+    if(array != NULL) {
+        array->mem.size = nondet_uint32_t();
+        array->mem.allocated = nondet_uint32_t();
+        ensure_s2n_blob_has_allocated_fields(&array->mem);
+        array->len = nondet_uint32_t();
+        array->element_size = nondet_uint32_t();
+    }
+    return array;
+}
